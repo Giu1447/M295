@@ -29,9 +29,9 @@
   },
   {
     "title": "Task 5",
-    "description": "Beschreibung für Task 5",
-    "dueDate": "2024-06-24",
-    "resolvedDate": "2024-06-12",
+    "description": "Neue Beschreibung für Task 5",
+    "dueDate": "2024-12-20",
+    "resolvedDate": null,
     "id": 5
   },
   {
@@ -42,8 +42,8 @@
     "id": 6
   },
   {
-    "title": "Task 7",
-    "description": "Beschreibung für Task 7",
+    "title": "Neuer Titel",
+    "description": "neue Beschreibung zum Task 7",
     "dueDate": "2024-06-26",
     "resolvedDate": "2024-06-13",
     "id": 7

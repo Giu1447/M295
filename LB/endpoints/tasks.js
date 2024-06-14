@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const bodyParser = require('body-parser')
 const fs = require('fs')
 const path = require('path')
 
@@ -7,6 +8,7 @@ const taskPath = path.join(__dirname, 'tasks.json')
 let tasksList = []
 
 router.use(express.json())
+router.use(bodyParser.json())
 
 try {
     tasksList = JSON.parse(fs.readFileSync(taskPath, 'utf-8'))
@@ -22,9 +24,8 @@ router.get('/', (req, res) => {
     if (req.session.authenticated === true) {
         res.status(200).json(tasksList)
     } else {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Access Denied')
     }
-
 })
 
 router.post('/', (req, res) => {
@@ -66,7 +67,6 @@ router.post('/', (req, res) => {
     }
 });
 
-
 router.get('/:id', (req, res) => {
     /*
     #swagger.description = 'Ein Task nach id anzeigen'
@@ -88,11 +88,9 @@ router.get('/:id', (req, res) => {
             res.status(200).json(task)
         }
     } else {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Access Denied')
     }
-
 })
-
 
 router.put('/:id', (req, res) => {
     /*
@@ -111,35 +109,38 @@ router.put('/:id', (req, res) => {
             schema: {
                 "title": "Updated Title",
                 "description": "Updated description",
-                "dueDate": "Updated Publisher",
-                "resolvedDate": 2024
+                "dueDate": "Updated dueDate",
+                "resolvedDate": "2024-08-21"
             }
     }
     */
     if (req.session.authenticated === true) {
         try {
-            const updateid = req.params.id
-            const updateIndex = tasksList.findIndex(task => task.id === parseInt(updateid))
+            const id = req.params.id
+            const updateIndex = tasksList.findIndex(task => task.id === parseInt(id))
 
             if (updateIndex === -1) {
                 res.status(404).send('Task nicht gefunden')
                 return
             }
 
-            tasksList[updateIndex] = req.body
+            if (!req.body.title) {
+                res.status(400).send('Du musst dem Task einen Titel geben')
+            }
+
+            const updatedTask = { ...tasksList[updateIndex], ...req.body }
+            tasksList[updateIndex] = updatedTask
             fs.writeFileSync(taskPath, JSON.stringify(tasksList, null, 2))
 
-            res.status(200).json(tasksList[updateIndex])
+            res.status(200).json(updatedTask)
         } catch (error) {
             console.error('Fehler beim Aktualisieren eines Tasks:', error)
             res.status(500).send('Ein Fehler ist aufgetreten')
         }
     } else {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Access Denied')
     }
-
 })
-
 
 router.patch('/:id', (req, res) => {
     /*
@@ -149,37 +150,30 @@ router.patch('/:id', (req, res) => {
     description: 'Details zum Task um ihn teilweise zu aktualisieren.',
     required: true,
     schema: {
-                "title": "Updated Title",
-                "description": "Updated description",
-                "dueDate": "Updated Publisher",
-                "resolvedDate": 2024
-            }
-  }
+        type: 'object',
+        properties: {
+            "title": { type: 'string', description: 'Updated Title (optional)' },
+            "description": { type: 'string', description: 'Updated description (optional)' },
+            "dueDate": { type: 'string', description: 'Updated dueDate (optional)' },
+            "resolvedDate": { type: 'string', description: 'Updated resolvedDate (optional)' }
+        }
+    }
 }
 */
-
     if (req.session.authenticated === true) {
         try {
-            const updateid = req.params.id
-            const newupdateTask = req.body
-            const updateTask = tasksList.find(task => task.id === parseInt(updateid))
+            const id = req.params.id
+            const updateTask = tasksList.find(task => task.id === parseInt(id))
 
             if (!updateTask) {
                 return res.status(404).send('Task nicht gefunden')
             }
 
-            if (newupdateTask.title) {
-                updateTask.title = newupdateTask.title
+            if (!req.body.title) {
+                res.status(400).send('Du musst dem Task einen Titel geben')
             }
 
-            if (newupdateTask.author) {
-                updateTask.author = newupdateTask.author
-            }
-
-            if (newupdateTask.year) {
-                updateTask.year = newupdateTask.year
-            }
-
+            Object.assign(updateTask, req.body)
             fs.writeFileSync(taskPath, JSON.stringify(tasksList, null, 2))
             res.status(200).json(updateTask)
         } catch (error) {
@@ -187,9 +181,8 @@ router.patch('/:id', (req, res) => {
             res.status(500).send('Ein Fehler ist aufgetreten')
         }
     } else {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Access Denied')
     }
-
 })
 
 router.delete('/:id', (req, res) => {
@@ -205,7 +198,8 @@ router.delete('/:id', (req, res) => {
     */
     if (req.session.authenticated === true) {
         try {
-            const deleteIndex = tasksList.findIndex(t => t.id === parseInt(req.params.id))
+            const id = req.params.id
+            const deleteIndex = tasksList.findIndex(task => task.id === parseInt(id))
 
             if (deleteIndex === -1) {
                 res.status(404).send('Task nicht gefunden')
@@ -219,9 +213,8 @@ router.delete('/:id', (req, res) => {
             res.status(500).send('Ein Fehler ist aufgetreten')
         }
     } else {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Access Denied')
     }
-
 })
 
 module.exports = router
