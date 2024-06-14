@@ -147,7 +147,7 @@ router.patch('/:id', (req, res) => {
         const updateTask = tasksList.find(task => task.id === parseInt(updateid))
 
         if (!updateTask) {
-            return res.status(404).send('Buch nicht gefunden')
+            return res.status(404).send('Task nicht gefunden')
         }
 
         if (newupdateTask.title) {
@@ -176,7 +176,7 @@ router.delete('/:id', (req, res) => {
     #swagger.tags = ['Tasks']
     #swagger.parameters['id'] = {
             in: 'path',
-            description: 'id von dem Buch was gelöscht werden soll.',
+            description: 'id von dem Task was gelöscht werden soll.',
             required: true,
             type: 'int'
     }
