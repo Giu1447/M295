@@ -60,10 +60,26 @@ app.get('/verify', (req, res) => {
     */
 
     if (req.session.authenticated === true) {
-        res.status(200).json(req.session.name)
+        res.status(200).json(req.session.authenticated)
     } else {
         res.status(401).send('Du bist nicht eingeloggt')
     }
+})
+
+app.get('/logout', (req, res) => {
+    /*
+    #swagger.description = 'Endpoint um dem User auzuloggen.'
+    #swagger.tags = ['Logout']
+    */
+
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Fehler beim Ausloggen:', err)
+            res.status(500).send('Fehler beim Ausloggen')
+        } else {
+            res.status(200).send('Du wurdest erfolgreich ausgeloggt')
+        }
+    })
 })
 
 app.listen(port, () => {
