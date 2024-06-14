@@ -40,7 +40,7 @@ Um die API zu testen gibt es ein `LB.postman_collection.json` File im Projekt.
 
 1. Importiere das Test File in Postman
 2. Teste die Collection
-- ACHTUNG: Die Collection kann nur einmal getestet werden sodass alle Test funktionieren weil man in den Test sämtliche Tasks löscht die dann beim nächsten Test zu Fehlern führt.
+- ACHTUNG: Es kann sein dass einige Test nicht funktionieren wenn man die ganze Collection auf einmal testet aufgrund dessen dass man bei vorherigen Test bereits Dinge gelöscht hat oder ähnliches.
 
 ## Zusätzliche Scripts
 
