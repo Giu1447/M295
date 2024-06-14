@@ -1,0 +1,365 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API für M295",
+    "description": "API Dokumentation die LB-B",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Login",
+      "description": "User Login"
+    },
+    {
+      "name": "Verify",
+      "description": "Loginstatus anschauen"
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks verwalten"
+    },
+    {
+      "name": "Logout",
+      "description": "User Logout"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "Endpoint um sich einzuloggen.",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User login Details",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Giulian"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "m295"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/verify": {
+      "get": {
+        "tags": [
+          "Verify"
+        ],
+        "description": "Endpoint um zu verifizieren ob der User eingeloggt ist.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "Logout"
+        ],
+        "description": "Endpoint um dem User auzuloggen.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tasks/": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpunkt um alle Tasks anzuzeigen",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Einen neuen Task hinzufügen",
+        "parameters": [
+          {
+            "name": "task",
+            "in": "body",
+            "description": "Details zum Task, die id wird automatisch generiert",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Task 21"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Beschreibung für Task 21"
+                },
+                "dueDate": {
+                  "type": "string",
+                  "example": "2024-08-21"
+                },
+                "resolvedDate": {}
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Ein Task nach id anzeigen",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "int",
+            "description": "id of the Task."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Ein Task bearbeiten",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "int",
+            "description": "id von dem Task um ihn zu aktualisieren"
+          },
+          {
+            "name": "task",
+            "in": "body",
+            "description": "Details zum Task der aktualisiert werden muss",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Updated Title"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Updated description"
+                },
+                "dueDate": {
+                  "type": "string",
+                  "example": "Updated Publisher"
+                },
+                "resolvedDate": {
+                  "type": "number",
+                  "example": 2024
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Details zum Task um ihn teilweise zu aktualisieren.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Updated Title (optional)"
+                        }
+                      }
+                    },
+                    "description": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Updated description (optional)"
+                        }
+                      }
+                    },
+                    "dueDate": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Updated dueDate (optional)"
+                        }
+                      }
+                    },
+                    "resolvedDate": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Updated resolvedDate (optional)"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Ein Task nach der id löschen",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "int",
+            "description": "id von dem Task was gelöscht werden soll."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

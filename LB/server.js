@@ -3,6 +3,8 @@ const app = express();
 const session = require('express-session')
 const port = 3000;
 const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger.json')
 
 app.use(bodyParser.json())
 
@@ -10,6 +12,7 @@ app.use(bodyParser.json())
 const tasks = require('./endpoints/tasks')
 app.use('/tasks', tasks)
 
+app.use('/swagger-ui', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(session({
     secret: 'supersecret',
