@@ -46,10 +46,23 @@ app.post('/login', (req, res) => {
         req.session.name = name
         req.session.password = password
         req.session.authenticated = true
-        res.status(200).send('Du wurdest erfolgreich eingeloggt')
+        res.status(200).json(name)
     } else {
         res.status(403).send('Benutzername oder Passwort falsch')
         req.session.authenticated = false
+    }
+})
+
+app.get('/verify', (req, res) => {
+    /*
+    #swagger.description = 'Endpoint um zu verifizieren ob der User eingeloggt ist.'
+    #swagger.tags = ['Verify']
+    */
+
+    if (req.session.authenticated === true) {
+        res.status(200).json(req.session.name)
+    } else {
+        res.status(401).send('Du bist nicht eingeloggt')
     }
 })
 
