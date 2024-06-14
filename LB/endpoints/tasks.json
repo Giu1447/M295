@@ -1,0 +1,142 @@
+[
+    {
+        "Id": 1,
+        "Titel": "Task 1",
+        "Beschreibung": "Beschreibung für Task 1",
+        "DueDate": "2024-06-20",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 2,
+        "Titel": "Task 2",
+        "Beschreibung": "Beschreibung für Task 2",
+        "DueDate": "2024-06-21",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 3,
+        "Titel": "Task 3",
+        "Beschreibung": "Beschreibung für Task 3",
+        "DueDate": "2024-06-22",
+        "ResolvedDate": "2024-06-10"
+    },
+    {
+        "Id": 4,
+        "Titel": "Task 4",
+        "Beschreibung": "Beschreibung für Task 4",
+        "DueDate": "2024-06-23",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 5,
+        "Titel": "Task 5",
+        "Beschreibung": "Beschreibung für Task 5",
+        "DueDate": "2024-06-24",
+        "ResolvedDate": "2024-06-12"
+    },
+    {
+        "Id": 6,
+        "Titel": "Task 6",
+        "Beschreibung": "Beschreibung für Task 6",
+        "DueDate": "2024-06-25",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 7,
+        "Titel": "Task 7",
+        "Beschreibung": "Beschreibung für Task 7",
+        "DueDate": "2024-06-26",
+        "ResolvedDate": "2024-06-13"
+    },
+    {
+        "Id": 8,
+        "Titel": "Task 8",
+        "Beschreibung": "Beschreibung für Task 8",
+        "DueDate": "2024-06-27",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 9,
+        "Titel": "Task 9",
+        "Beschreibung": "Beschreibung für Task 9",
+        "DueDate": "2024-06-28",
+        "ResolvedDate": "2024-06-14"
+    },
+    {
+        "Id": 10,
+        "Titel": "Task 10",
+        "Beschreibung": "Beschreibung für Task 10",
+        "DueDate": "2024-06-29",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 11,
+        "Titel": "Task 11",
+        "Beschreibung": "Beschreibung für Task 11",
+        "DueDate": "2024-06-30",
+        "ResolvedDate": "2024-06-15"
+    },
+    {
+        "Id": 12,
+        "Titel": "Task 12",
+        "Beschreibung": "Beschreibung für Task 12",
+        "DueDate": "2024-07-01",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 13,
+        "Titel": "Task 13",
+        "Beschreibung": "Beschreibung für Task 13",
+        "DueDate": "2024-07-02",
+        "ResolvedDate": "2024-06-16"
+    },
+    {
+        "Id": 14,
+        "Titel": "Task 14",
+        "Beschreibung": "Beschreibung für Task 14",
+        "DueDate": "2024-07-03",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 15,
+        "Titel": "Task 15",
+        "Beschreibung": "Beschreibung für Task 15",
+        "DueDate": "2024-07-04",
+        "ResolvedDate": "2024-06-17"
+    },
+    {
+        "Id": 16,
+        "Titel": "Task 16",
+        "Beschreibung": "Beschreibung für Task 16",
+        "DueDate": "2024-07-05",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 17,
+        "Titel": "Task 17",
+        "Beschreibung": "Beschreibung für Task 17",
+        "DueDate": "2024-07-06",
+        "ResolvedDate": "2024-06-18"
+    },
+    {
+        "Id": 18,
+        "Titel": "Task 18",
+        "Beschreibung": "Beschreibung für Task 18",
+        "DueDate": "2024-07-07",
+        "ResolvedDate": null
+    },
+    {
+        "Id": 19,
+        "Titel": "Task 19",
+        "Beschreibung": "Beschreibung für Task 19",
+        "DueDate": "2024-07-08",
+        "ResolvedDate": "2024-06-19"
+    },
+    {
+        "Id": 20,
+        "Titel": "Task 20",
+        "Beschreibung": "Beschreibung für Task 20",
+        "DueDate": "2024-07-09",
+        "ResolvedDate": null
+    }
+]
