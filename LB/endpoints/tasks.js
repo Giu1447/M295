@@ -77,5 +77,47 @@ router.get('/:id', (req, res) => {
 })
 
 
+router.put('/:id', (req, res) => {
+    /*
+    #swagger.description = 'Ein Task bearbeiten'
+    #swagger.tags = ['Tasks']
+    #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'id von dem Task um ihn zu aktualisieren',
+            required: true,
+            type: 'int'
+    }
+    #swagger.parameters['task'] = {
+            in: 'body',
+            description: 'Details zum Task der aktualisiert werden muss',
+            required: true,
+            schema: {
+                "title": "Updated Title",
+                "description": "Updated description",
+                "dueDate": "Updated Publisher",
+                "resolvedDate": 2024
+            }
+    }
+    */
+    try {
+        const updateid = req.params.id
+        const updateIndex = tasksList.findIndex(task => task.id === parseInt(updateid))
+
+        if (updateIndex === -1) {
+            res.status(404).send('Task nicht gefunden')
+            return
+        }
+
+        tasksList[updateIndex] = req.body
+        fs.writeFileSync(taskPath, JSON.stringify(tasksList, null, 2))
+
+        res.status(200).json(tasksList[updateIndex])
+    } catch (error) {
+        console.error('Fehler beim Aktualisieren eines Tasks:', error)
+        res.status(500).send('Ein Fehler ist aufgetreten')
+    }
+})
+
+
 
 module.exports = router

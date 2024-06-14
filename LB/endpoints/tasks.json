@@ -145,5 +145,11 @@
     "dueDate": "2024-08-21",
     "resolvedDate": null,
     "id": 21
+  },
+  {
+    "title": "Task 22",
+    "description": "Neue Beschreibung für Task 22",
+    "dueDate": "2024-12-20",
+    "resolvedDate": null
   }
 ]
