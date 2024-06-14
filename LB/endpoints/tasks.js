@@ -11,7 +11,7 @@ router.use(express.json())
 try {
     tasksList = JSON.parse(fs.readFileSync(taskPath, 'utf-8'))
 } catch (err) {
-    console.error('Fehler beim Lesen von books.json:', err)
+    console.error('Fehler beim Lesen von tasks.json:', err)
 }
 
 router.get('/', (req, res) => {
@@ -54,6 +54,27 @@ router.post('/', (req, res) => {
     }
 })
 
+
+router.get('/:id', (req, res) => {
+    /*
+    #swagger.description = 'Ein Task nach id anzeigen'
+    #swagger.tags = ['Tasks']
+    #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'id of the Task.',
+            required: true,
+            type: 'int'
+    }
+    */
+    const id = req.params.id
+    const task = tasksList.find(task => task.id === parseInt(id))
+
+    if (!task) {
+        res.status(404).send('Task nicht gefunden')
+    } else {
+        res.status(200).json(task)
+    }
+})
 
 
 
