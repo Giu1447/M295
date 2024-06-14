@@ -170,6 +170,31 @@ router.patch('/:id', (req, res) => {
     }
 })
 
+router.delete('/:id', (req, res) => {
+    /*
+    #swagger.description = 'Ein Task nach der id löschen'
+    #swagger.tags = ['Tasks']
+    #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'id von dem Buch was gelöscht werden soll.',
+            required: true,
+            type: 'int'
+    }
+    */
+    try {
+        const deleteIndex = tasksList.findIndex(t => t.id === parseInt(req.params.id))
 
+        if (deleteIndex === -1) {
+            res.status(404).send('Task nicht gefunden')
+        } else {
+            tasksList.splice(deleteIndex, 1)
+            fs.writeFileSync(taskPath, JSON.stringify(tasksList, null, 2))
+            res.status(200).send('Der Task wurde erfolgreich gelöscht')
+        }
+    } catch (error) {
+        console.error('Fehler beim Löschen des Tasks:', error)
+        res.status(500).send('Ein Fehler ist aufgetreten')
+    }
+})
 
 module.exports = router
