@@ -1,6 +1,6 @@
 Das Repository wurde für die LB-B von dem Modul 295 erstellt.
 
-Die Aufgabe war es eine Rest-API zu machen mit der man Tasks managen kann. Unter dem Endpunkt [[http://localhost:3000/swagger-ui/]] findet man, nachdem man den Server gestartet hat, die ganze Dokumentation zu der API. 
+Die Aufgabe war es eine Rest-API zu machen mit der man Tasks managen kann. Unter dem Endpunkt http://localhost:3000/swagger-ui/ findet man, nachdem man den Server gestartet hat, die ganze Dokumentation zu der API. 
 
 ## API Installieren
 
@@ -28,7 +28,7 @@ npm install
 
 ## Nutzung
 
-Um die API zu nutzen gibt man folgenden Command in den `endpoints` Ordner ein und öffne dann folgenden Link [[http://localhost:3000/]]
+Um die API zu nutzen gibt man folgenden Command in den `endpoints` Ordner ein und öffne dann folgenden Link http://localhost:3000/
 
 ``` ssh
 node server.js
