@@ -55,3 +55,6 @@ Führe diesen Code aus um ein neues swagger.json zu generieren.
 ``` ssh
 node swagger.js
 ```
+
+
+Autor: Giulian Mazzeo
